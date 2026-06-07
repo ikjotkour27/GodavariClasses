@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Free Practice Quiz – Godavari Classes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#2D5016;--green2:#3D6B1E;--lime:#C8E64A;--lime2:#D4ED5E;
+  --white:#FAFFF0;--text:#1A2E06;--mid:#4A6020;
+  --correct:#4CAF50;--wrong:#E53935;--radius:14px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--green);color:var(--white);min-height:100vh}
+
+/* NAV */
+nav{
+  background:var(--green);border-bottom:2px solid rgba(200,230,74,0.2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:60px;
+}
+.nav-brand{font-family:'Lilita One',cursive;font-size:1.3rem;color:var(--lime);text-decoration:none}
+.back-btn{
+  color:rgba(200,230,74,0.8);font-size:0.82rem;font-weight:700;
+  text-decoration:none;text-transform:uppercase;letter-spacing:1px;
+  display:flex;align-items:center;gap:6px;transition:color 0.2s;
+}
+.back-btn:hover{color:var(--lime)}
+
+/* QUIZ WRAP */
+.quiz-wrap{max-width:760px;margin:0 auto;padding:3rem 5% 5rem}
+
+/* HEADER */
+.quiz-header{text-align:center;margin-bottom:3rem;animation:fadeUp 0.5s ease both}
+.quiz-header .badge{
+  display:inline-block;background:rgba(200,230,74,0.15);
+  border:1.5px solid rgba(200,230,74,0.3);color:var(--lime);
+  font-size:0.72rem;font-weight:800;letter-spacing:2px;
+  text-transform:uppercase;padding:5px 14px;border-radius:20px;margin-bottom:1rem;
+}
+.quiz-header h1{
+  font-family:'Lilita One',cursive;font-size:clamp(2rem,5vw,3rem);
+  color:var(--lime);margin-bottom:0.5rem;
+}
+.quiz-header p{color:rgba(255,255,255,0.65);font-size:0.9rem}
+
+/* PROGRESS */
+.progress-bar-wrap{
+  background:rgba(200,230,74,0.1);
+  border-radius:30px;height:8px;margin-bottom:2rem;overflow:hidden;
+}
+.progress-bar{
+  background:var(--lime);height:100%;border-radius:30px;
+  transition:width 0.5s ease;width:0%;
+}
+.progress-label{
+  display:flex;justify-content:space-between;
+  font-size:0.78rem;font-weight:700;color:rgba(255,255,255,0.55);
+  margin-bottom:0.5rem;
+}
+
+/* QUESTION CARD */
+.question-card{
+  background:rgba(200,230,74,0.07);
+  border:1.5px solid rgba(200,230,74,0.18);
+  border-radius:18px;padding:2rem 2rem;
+  animation:fadeUp 0.4s ease both;
+}
+.q-number{
+  font-size:0.72rem;font-weight:800;text-transform:uppercase;
+  letter-spacing:2px;color:var(--lime);margin-bottom:0.8rem;
+}
+.q-text{
+  font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:1.8rem;line-height:1.5;
+}
+.options-grid{display:flex;flex-direction:column;gap:0.75rem}
+.option-btn{
+  background:rgba(255,255,255,0.05);
+  border:1.5px solid rgba(200,230,74,0.2);
+  border-radius:10px;padding:13px 18px;
+  text-align:left;color:#fff;font-family:'Poppins',sans-serif;
+  font-size:0.9rem;font-weight:600;cursor:pointer;
+  display:flex;align-items:center;gap:12px;
+  transition:all 0.2s;
+}
+.option-btn:hover:not(:disabled){
+  background:rgba(200,230,74,0.12);border-color:var(--lime);
+}
+.option-btn .opt-label{
+  width:28px;height:28px;border-radius:50%;
+  background:rgba(200,230,74,0.15);border:1.5px solid rgba(200,230,74,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.78rem;font-weight:800;color:var(--lime);flex-shrink:0;
+}
+.option-btn.correct{background:rgba(76,175,80,0.2);border-color:var(--correct)}
+.option-btn.correct .opt-label{background:var(--correct);border-color:var(--correct);color:#fff}
+.option-btn.wrong{background:rgba(229,57,53,0.2);border-color:var(--wrong)}
+.option-btn.wrong .opt-label{background:var(--wrong);border-color:var(--wrong);color:#fff}
+.option-btn:disabled{cursor:not-allowed;opacity:0.65}
+.option-btn.correct:disabled,.option-btn.wrong:disabled{opacity:1}
+
+/* FEEDBACK */
+.feedback-box{
+  margin-top:1.2rem;padding:12px 16px;border-radius:10px;
+  font-size:0.85rem;font-weight:600;display:none;
+  animation:fadeUp 0.3s ease both;
+}
+.feedback-box.show{display:block}
+.feedback-box.correct-fb{background:rgba(76,175,80,0.15);border:1px solid var(--correct);color:#a5d6a7}
+.feedback-box.wrong-fb{background:rgba(229,57,53,0.12);border:1px solid var(--wrong);color:#ef9a9a}
+
+/* NAV BTNS */
+.quiz-nav{display:flex;justify-content:flex-end;margin-top:1.5rem}
+.next-btn{
+  background:var(--lime);color:var(--text);
+  padding:12px 28px;border-radius:10px;
+  font-weight:800;font-size:0.9rem;cursor:pointer;
+  border:none;font-family:'Poppins',sans-serif;
+  transition:background 0.2s,transform 0.15s;
+  display:none;
+}
+.next-btn.show{display:inline-block}
+.next-btn:hover{background:var(--lime2);transform:translateY(-1px)}
+
+/* RESULT SCREEN */
+.result-screen{
+  text-align:center;animation:fadeUp 0.5s ease both;display:none;
+}
+.result-screen.show{display:block}
+.score-ring{
+  width:140px;height:140px;border-radius:50%;
+  border:8px solid var(--lime);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;flex-direction:column;
+}
+.score-ring .score-num{
+  font-family:'Lilita One',cursive;font-size:2.8rem;color:var(--lime);line-height:1;
+}
+.score-ring .score-den{font-size:0.85rem;color:rgba(255,255,255,0.5);font-weight:600}
+.result-screen h2{
+  font-family:'Lilita One',cursive;font-size:2rem;color:var(--lime);margin-bottom:0.5rem;
+}
+.result-screen .result-msg{color:rgba(255,255,255,0.7);margin-bottom:2rem;font-size:0.95rem}
+.result-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-lime{
+  background:var(--lime);color:var(--text);padding:13px 28px;
+  border-radius:10px;font-weight:800;font-size:0.9rem;
+  text-decoration:none;border:none;cursor:pointer;
+  font-family:'Poppins',sans-serif;transition:all 0.2s;display:inline-block;
+}
+.btn-lime:hover{background:var(--lime2);transform:translateY(-1px)}
+.btn-ghost{
+  background:transparent;color:var(--lime);padding:12px 28px;
+  border-radius:10px;border:1.5px solid var(--lime);
+  font-weight:800;font-size:0.9rem;text-decoration:none;
+  transition:all 0.2s;display:inline-block;
+}
+.btn-ghost:hover{background:rgba(200,230,74,0.1);transform:translateY(-1px)}
+
+/* REVIEW */
+.review-section{margin-top:2.5rem;text-align:left}
+.review-section h3{
+  font-family:'Lilita One',cursive;font-size:1.3rem;
+  color:var(--lime);margin-bottom:1rem;
+}
+.review-item{
+  background:rgba(200,230,74,0.06);border:1px solid rgba(200,230,74,0.15);
+  border-radius:12px;padding:1rem 1.2rem;margin-bottom:0.8rem;
+}
+.review-item .ri-q{font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.5rem}
+.review-item .ri-your{font-size:0.8rem;font-weight:600}
+.review-item .ri-correct{font-size:0.8rem;font-weight:600;color:#a5d6a7}
+.ri-correct-ans{color:#a5d6a7}.ri-wrong-ans{color:#ef9a9a}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:500px){
+  .quiz-wrap{padding:2rem 4% 4rem}
+  .question-card{padding:1.5rem 1.2rem}
+  .q-text{font-size:0.95rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Godavari Classes</a>
+  <a href="index.html" class="back-btn">← Back to Home</a>
+</nav>
+
+<div class="quiz-wrap">
+
+  <!-- QUIZ HEADER -->
+  <div class="quiz-header">
+    <div class="badge">✦ Free Practice Quiz</div>
+    <h1>Test Your Knowledge</h1>
+    <p>6 questions covering General Knowledge, Reasoning & Mathematics — ideal for SSC, JKSSB & NDA prep.</p>
+  </div>
+
+  <!-- QUIZ AREA -->
+  <div id="quiz-area">
+    <div class="progress-label">
+      <span id="progress-text">Question 1 of 6</span>
+      <span id="score-live">Score: 0</span>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+
+    <div class="question-card" id="question-card">
+      <div class="q-number" id="q-number">Question 1</div>
+      <div class="q-text" id="q-text"></div>
+      <div class="options-grid" id="options-grid"></div>
+      <div class="feedback-box" id="feedback-box"></div>
+      <div class="quiz-nav"><button class="next-btn" id="next-btn" onclick="nextQuestion()">Next Question →</button></div>
+    </div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="result-screen" id="result-screen">
+    <div class="score-ring">
+      <div class="score-num" id="final-score">0</div>
+      <div class="score-den" id="final-den">/ 6</div>
+    </div>
+    <h2 id="result-title">Great Job!</h2>
+    <p class="result-msg" id="result-msg"></p>
+    <div class="result-actions">
+      <button class="btn-lime" onclick="restartQuiz()">🔄 Retake Quiz</button>
+      <a href="index.html" class="btn-ghost">🏠 Back to Home</a>
+      <a href="tel:9419106528" class="btn-lime">📞 Enrol Now</a>
+    </div>
+    <div class="review-section">
+      <h3>📋 Answer Review</h3>
+      <div id="review-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    q: "Who was the first President of India?",
+    options: ["Jawaharlal Nehru", "Dr. Rajendra Prasad", "Dr. B.R. Ambedkar", "Sardar Vallabhbhai Patel"],
+    answer: 1,
+    explanation: "Dr. Rajendra Prasad was the first President of India, serving from 1950 to 1962."
+  },
+  {
+    q: "If a train travels 360 km in 4 hours, what is its speed in km/h?",
+    options: ["80 km/h", "90 km/h", "95 km/h", "100 km/h"],
+    answer: 1,
+    explanation: "Speed = Distance ÷ Time = 360 ÷ 4 = 90 km/h."
+  },
+  {
+    q: "Which is the largest planet in our Solar System?",
+    options: ["Saturn", "Neptune", "Jupiter", "Uranus"],
+    answer: 2,
+    explanation: "Jupiter is the largest planet in the Solar System, with a mass more than twice that of all other planets combined."
+  },
+  {
+    q: "Find the missing number in the series: 2, 6, 12, 20, 30, ___",
+    options: ["40", "42", "44", "45"],
+    answer: 1,
+    explanation: "The differences are 4, 6, 8, 10, 12 — so 30 + 12 = 42. The pattern adds consecutive even numbers."
+  },
+  {
+    q: "The term 'JKSSB' stands for which organisation that conducts recruitment in J&K?",
+    options: [
+      "Jammu & Kashmir State Service Board",
+      "Jammu & Kashmir Services Selection Board",
+      "Jammu & Kashmir Special Selection Bureau",
+      "Jammu & Kashmir Staff Selection Board"
+    ],
+    answer: 1,
+    explanation: "JKSSB stands for Jammu & Kashmir Services Selection Board, which conducts recruitment for various posts in J&K."
+  },
+  {
+    q: "What is 15% of 400?",
+    options: ["55", "60", "65", "70"],
+    answer: 1,
+    explanation: "15% of 400 = (15/100) × 400 = 60."
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = [];
+let userAnswers = [];
+
+function init() {
+  current = 0; score = 0;
+  answered = new Array(questions.length).fill(false);
+  userAnswers = new Array(questions.length).fill(-1);
+  document.getElementById('quiz-area').style.display = 'block';
+  document.getElementById('result-screen').classList.remove('show');
+  showQuestion();
+}
+
+function showQuestion() {
+  const q = questions[current];
+  const total = questions.length;
+  document.getElementById('q-number').textContent = `Question ${current + 1}`;
+  document.getElementById('q-text').textContent = q.q;
+  document.getElementById('progress-text').textContent = `Question ${current + 1} of ${total}`;
+  document.getElementById('score-live').textContent = `Score: ${score}`;
+  document.getElementById('progress-bar').style.width = `${(current / total) * 100}%`;
+
+  const labels = ['A','B','C','D'];
+  const grid = document.getElementById('options-grid');
+  grid.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="opt-label">${labels[i]}</span> ${opt}`;
+    btn.onclick = () => selectAnswer(i, btn);
+    if (answered[current]) {
+      btn.disabled = true;
+      if (i === q.answer) btn.classList.add('correct');
+      if (i === userAnswers[current] && i !== q.answer) btn.classList.add('wrong');
+    }
+    grid.appendChild(btn);
+  });
+
+  const fb = document.getElementById('feedback-box');
+  fb.className = 'feedback-box';
+  fb.style.display = 'none';
+
+  const nb = document.getElementById('next-btn');
+  nb.className = 'next-btn';
+
+  if (answered[current]) {
+    showFeedback(userAnswers[current] === q.answer);
+    nb.classList.add('show');
+    nb.textContent = current < questions.length - 1 ? 'Next Question →' : 'See Results →';
+  }
+}
+
+function selectAnswer(idx, clickedBtn) {
+  if (answered[current]) return;
+  const q = questions[current];
+  answered[current] = true;
+  userAnswers[current] = idx;
+
+  const allBtns = document.querySelectorAll('.option-btn');
+  allBtns.forEach((b, i) => {
+    b.disabled = true;
+    if (i === q.answer) b.classList.add('correct');
+    if (i === idx && idx !== q.answer) b.classList.add('wrong');
+  });
+
+  const correct = idx === q.answer;
+  if (correct) score++;
+  document.getElementById('score-live').textContent = `Score: ${score}`;
+  showFeedback(correct);
+
+  const nb = document.getElementById('next-btn');
+  nb.classList.add('show');
+  nb.textContent = current < questions.length - 1 ? 'Next Question →' : 'See Results →';
+}
+
+function showFeedback(correct) {
+  const q = questions[current];
+  const fb = document.getElementById('feedback-box');
+  fb.className = 'feedback-box show ' + (correct ? 'correct-fb' : 'wrong-fb');
+  fb.style.display = 'block';
+  fb.textContent = (correct ? '✅ Correct! ' : '❌ Incorrect. ') + q.explanation;
+}
+
+function nextQuestion() {
+  current++;
+  if (current >= questions.length) {
+    showResult();
+  } else {
+    showQuestion();
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz-area').style.display = 'none';
+  const rs = document.getElementById('result-screen');
+  rs.classList.add('show');
+  document.getElementById('final-score').textContent = score;
+  document.getElementById('final-den').textContent = `/ ${questions.length}`;
+
+  const pct = Math.round((score / questions.length) * 100);
+  let title, msg;
+  if (pct === 100) { title = '🏆 Perfect Score!'; msg = 'Outstanding! You got every question right. You are exam-ready!'; }
+  else if (pct >= 70) { title = '🎉 Great Job!'; msg = `You scored ${pct}%! Strong foundation — keep practising and you'll ace the exam!`; }
+  else if (pct >= 50) { title = '📚 Good Effort!'; msg = `You scored ${pct}%. A little more practice and you'll be there. Join our batch!`; }
+  else { title = '💪 Keep Practising!'; msg = `You scored ${pct}%. Don't worry — our expert faculty at Godavari Classes will get you up to speed!`; }
+
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-msg').textContent = msg;
+  document.getElementById('progress-bar').style.width = '100%';
+
+  // Review
+  const rl = document.getElementById('review-list');
+  rl.innerHTML = '';
+  questions.forEach((q, i) => {
+    const correct = userAnswers[i] === q.answer;
+    const div = document.createElement('div');
+    div.className = 'review-item';
+    div.innerHTML = `
+      <div class="ri-q">Q${i+1}: ${q.q}</div>
+      <div class="ri-your ${correct ? 'ri-correct-ans' : 'ri-wrong-ans'}">
+        Your answer: ${userAnswers[i] >= 0 ? q.options[userAnswers[i]] : 'Not answered'} ${correct ? '✅' : '❌'}
+      </div>
+      ${!correct ? `<div class="ri-correct">Correct: ${q.options[q.answer]}</div>` : ''}
+    `;
+    rl.appendChild(div);
+  });
+
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function restartQuiz() { init(); window.scrollTo({top: 0, behavior: 'smooth'}); }
+
+init();
+</script>
+
+</body>
+</html>

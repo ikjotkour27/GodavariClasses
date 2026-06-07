@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Godavari Classes – Competitive Exam Coaching | Bishnah, Jammu</title>
+<meta name="description" content="Godavari Classes – Expert coaching for JKSSB, SSC, Agniveer, Sainik School, CDS, NDA. Located at Bishnah. Fresh batches starting 26th January 2026."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#2D5016;
+  --green2:#3D6B1E;
+  --green3:#4E8526;
+  --lime:#C8E64A;
+  --lime2:#D4ED5E;
+  --lime-dark:#A8C22E;
+  --white:#FAFFF0;
+  --text:#1A2E06;
+  --mid:#4A6020;
+  --radius:14px;
+  --shadow:0 8px 32px rgba(45,80,22,0.18);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Poppins',sans-serif;background:var(--green);color:var(--white);overflow-x:hidden}
+
+/* ── STAR SPARKLES BG ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(200,230,74,0.07) 0%, transparent 50%),
+    radial-gradient(circle at 85% 70%, rgba(200,230,74,0.05) 0%, transparent 50%);
+  pointer-events:none;z-index:0;
+}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:var(--green);
+  border-bottom:2px solid rgba(200,230,74,0.2);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:64px;
+}
+.nav-brand{
+  font-family:'Lilita One',cursive;
+  font-size:1.4rem;
+  color:var(--lime);
+  text-decoration:none;
+  letter-spacing:1px;
+}
+.nav-links{display:flex;gap:1.4rem;list-style:none;align-items:center}
+.nav-links a{
+  color:rgba(200,230,74,0.8);
+  text-decoration:none;font-size:0.82rem;
+  font-weight:600;text-transform:uppercase;letter-spacing:1px;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--lime)}
+.nav-quiz-btn{
+  background:var(--lime);
+  color:var(--green) !important;
+  padding:8px 18px;border-radius:8px;
+  font-weight:800 !important;
+  transition:background 0.2s,transform 0.15s !important;
+}
+.nav-quiz-btn:hover{background:var(--lime2) !important;transform:translateY(-1px)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1.1fr 1fr;
+  min-height:90vh;align-items:center;
+  padding:5rem 6% 4rem;gap:4rem;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,230,74,0.15);
+  border:1.5px solid rgba(200,230,74,0.4);
+  color:var(--lime);
+  font-size:0.75rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;
+  padding:6px 14px;border-radius:20px;
+  margin-bottom:1.4rem;
+  animation:fadeUp 0.6s ease both;
+}
+.hero h1{
+  font-family:'Lilita One',cursive;
+  font-size:clamp(3rem,6vw,5.5rem);
+  line-height:1;
+  color:var(--lime);
+  text-shadow:3px 3px 0 rgba(0,0,0,0.25);
+  animation:fadeUp 0.6s 0.1s ease both;
+}
+.hero h1 span{color:#fff}
+.hero-tagline{
+  font-size:1rem;color:rgba(255,255,255,0.75);
+  margin-top:1rem;max-width:480px;font-style:italic;
+  animation:fadeUp 0.6s 0.2s ease both;
+}
+.features-list{
+  list-style:none;
+  display:flex;flex-direction:column;gap:0.7rem;
+  margin-top:1.8rem;
+  animation:fadeUp 0.6s 0.3s ease both;
+}
+.features-list li{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.95rem;font-weight:600;color:#fff;
+}
+.features-list li::before{
+  content:'✦';
+  color:var(--lime);font-size:0.9rem;flex-shrink:0;
+}
+.hero-btns{
+  display:flex;gap:1rem;flex-wrap:wrap;
+  margin-top:2.2rem;
+  animation:fadeUp 0.6s 0.45s ease both;
+}
+.btn-lime{
+  background:var(--lime);color:var(--text);
+  padding:14px 28px;border-radius:10px;
+  font-weight:800;font-size:0.95rem;
+  text-decoration:none;letter-spacing:0.5px;
+  transition:background 0.2s,transform 0.15s;
+  display:inline-block;
+}
+.btn-lime:hover{background:var(--lime2);transform:translateY(-2px)}
+.btn-ghost{
+  background:transparent;color:var(--lime);
+  padding:13px 28px;border-radius:10px;
+  border:1.5px solid var(--lime);
+  font-weight:800;font-size:0.95rem;
+  text-decoration:none;letter-spacing:0.5px;
+  transition:all 0.2s;
+  display:inline-block;
+}
+.btn-ghost:hover{background:rgba(200,230,74,0.1);transform:translateY(-2px)}
+
+/* ── HERO RIGHT — BATCH CARD ── */
+.hero-right{animation:fadeUp 0.6s 0.3s ease both}
+.batch-card{
+  background:var(--lime);
+  border-radius:20px;
+  padding:2.5rem 2rem;
+  color:var(--text);
+  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;
+}
+.batch-card::before{
+  content:'★';
+  position:absolute;top:-10px;right:20px;
+  font-size:5rem;opacity:0.07;
+  font-family:'Lilita One',cursive;
+}
+.batch-tag{
+  background:var(--green);color:var(--lime);
+  font-size:0.72rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:2px;
+  padding:5px 12px;border-radius:20px;
+  display:inline-block;margin-bottom:1rem;
+}
+.batch-card h2{
+  font-family:'Lilita One',cursive;
+  font-size:1.7rem;line-height:1.1;
+  color:var(--green);margin-bottom:0.4rem;
+}
+.batch-card .batch-date{
+  font-size:1rem;font-weight:700;
+  color:var(--green2);margin-bottom:1.5rem;
+}
+.batch-exams{
+  display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:1.5rem;
+}
+.exam-chip{
+  background:var(--green);color:var(--lime);
+  font-size:0.75rem;font-weight:700;
+  padding:5px 12px;border-radius:20px;
+  letter-spacing:0.5px;
+}
+.batch-card .enroll-btn{
+  background:var(--green);color:var(--lime);
+  padding:12px 28px;border-radius:10px;
+  font-weight:800;font-size:1rem;
+  text-decoration:none;display:inline-block;
+  transition:background 0.2s,transform 0.15s;
+  letter-spacing:1px;
+}
+.batch-card .enroll-btn:hover{background:var(--green2);transform:translateY(-2px)}
+
+/* ── TRUST BAR ── */
+.trust-bar{
+  position:relative;z-index:1;
+  background:var(--lime);
+  display:flex;justify-content:space-around;flex-wrap:wrap;
+  gap:1rem;padding:1.3rem 6%;
+}
+.trust-item{
+  display:flex;align-items:center;gap:8px;
+  color:var(--text);font-weight:700;font-size:0.85rem;
+}
+
+/* ── SECTIONS ── */
+section{position:relative;z-index:1;padding:5rem 6%}
+.section-label{
+  font-size:0.72rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:2.5px;
+  color:var(--lime);margin-bottom:0.5rem;
+  display:block;
+}
+.section-title{
+  font-family:'Lilita One',cursive;
+  font-size:clamp(2rem,4vw,2.8rem);
+  color:var(--lime);letter-spacing:0.5px;
+  margin-bottom:0.4rem;
+}
+.section-sub{color:rgba(255,255,255,0.7);font-size:0.95rem;max-width:560px;margin-bottom:3rem}
+
+/* ── COURSES ── */
+.courses-bg{background:rgba(0,0,0,0.15)}
+.courses-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1.2rem;
+}
+.course-card{
+  background:rgba(200,230,74,0.08);
+  border:1.5px solid rgba(200,230,74,0.2);
+  border-radius:var(--radius);
+  padding:1.8rem 1.4rem;
+  text-align:center;
+  transition:all 0.2s;
+  cursor:default;
+}
+.course-card:hover{
+  background:rgba(200,230,74,0.15);
+  border-color:var(--lime);
+  transform:translateY(-4px);
+}
+.course-icon{font-size:2.2rem;display:block;margin-bottom:0.8rem}
+.course-card h3{
+  font-weight:800;font-size:1rem;color:var(--lime);margin-bottom:0.3rem;
+}
+.course-card p{font-size:0.8rem;color:rgba(255,255,255,0.65)}
+
+/* ── OFFERINGS ── */
+.offerings-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:center;
+}
+.offer-list{list-style:none;display:flex;flex-direction:column;gap:1rem}
+.offer-list li{
+  display:flex;align-items:flex-start;gap:14px;
+  background:rgba(200,230,74,0.08);
+  border:1px solid rgba(200,230,74,0.15);
+  border-left:4px solid var(--lime);
+  border-radius:0 10px 10px 0;
+  padding:1rem 1.2rem;
+}
+.offer-list li .o-icon{font-size:1.4rem;flex-shrink:0;margin-top:1px}
+.offer-list li strong{display:block;font-weight:800;color:var(--lime);font-size:0.95rem}
+.offer-list li span{font-size:0.82rem;color:rgba(255,255,255,0.65)}
+.guarantee-card{
+  background:var(--lime);
+  border-radius:20px;padding:2.5rem 2rem;
+  text-align:center;color:var(--text);
+}
+.guarantee-card .big{
+  font-family:'Lilita One',cursive;
+  font-size:4rem;color:var(--green);line-height:1;
+}
+.guarantee-card .glabel{
+  font-size:1rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:2px;
+  color:var(--green2);margin-top:0.3rem;
+}
+.guarantee-card p{font-size:0.85rem;color:var(--mid);margin-top:0.8rem;line-height:1.6}
+
+/* ── QUIZ CTA ── */
+.quiz-cta{background:var(--green2);text-align:center;padding:5rem 6%}
+.quiz-cta h2{
+  font-family:'Lilita One',cursive;
+  font-size:clamp(2rem,4vw,3rem);
+  color:var(--lime);margin-bottom:0.8rem;
+}
+.quiz-cta p{color:rgba(255,255,255,0.75);font-size:1rem;margin-bottom:2rem}
+.quiz-cta a.btn-lime{font-size:1.1rem;padding:16px 40px;letter-spacing:1px}
+
+/* ── CONTACT ── */
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;
+}
+.contact-cards{display:flex;flex-direction:column;gap:1rem}
+.contact-card{
+  background:rgba(200,230,74,0.08);
+  border:1px solid rgba(200,230,74,0.2);
+  border-radius:12px;
+  padding:1.1rem 1.3rem;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.contact-card .cc-icon{font-size:1.4rem;flex-shrink:0}
+.contact-card .cc-label{
+  font-size:0.7rem;font-weight:800;
+  text-transform:uppercase;letter-spacing:1px;
+  color:var(--lime);margin-bottom:3px;
+}
+.contact-card .cc-val{color:#fff;font-weight:600;font-size:0.92rem}
+.contact-card .cc-val a{color:#fff;text-decoration:none}
+.contact-card .cc-val a:hover{color:var(--lime)}
+.social-row{
+  display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem;
+}
+.social-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,230,74,0.1);
+  border:1.5px solid rgba(200,230,74,0.35);
+  border-radius:8px;padding:10px 18px;
+  color:var(--lime);font-weight:700;font-size:0.85rem;
+  text-decoration:none;transition:all 0.2s;
+}
+.social-btn:hover{background:rgba(200,230,74,0.2);transform:translateY(-2px)}
+.map-embed{border-radius:14px;overflow:hidden;border:2px solid rgba(200,230,74,0.2)}
+.map-embed iframe{width:100%;height:300px;border:none;display:block}
+
+/* ── FOOTER ── */
+footer{
+  background:#111c06;text-align:center;
+  padding:1.6rem 5%;font-size:0.82rem;
+  color:rgba(200,230,74,0.5);
+}
+footer strong{color:var(--lime)}
+
+/* ── WA FLOAT ── */
+.wa-float{
+  position:fixed;bottom:1.8rem;right:1.8rem;
+  background:#25D366;color:#fff;
+  width:56px;height:56px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;text-decoration:none;
+  box-shadow:0 4px 20px rgba(37,211,102,0.45);
+  z-index:999;transition:transform 0.2s;
+}
+.wa-float:hover{transform:scale(1.1)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;min-height:auto;padding:3rem 5% 2rem;gap:2rem}
+  .hero h1{font-size:3rem}
+  section{padding:3.5rem 5%}
+  .offerings-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media(max-width:500px){
+  nav{padding:0 4%}
+  .nav-links{gap:0.8rem}
+  .nav-links li:not(:last-child){display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Godavari Classes</a>
+  <ul class="nav-links">
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#offerings">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="quiz.html" class="nav-quiz-btn">📝 Take Quiz</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">✦ Bishnah, Jammu · Est. Coaching Institute</div>
+    <h1>Godavari<br/><span>Classes</span></h1>
+    <p class="hero-tagline">"Empower Minds, Transform Futures" — Expert coaching for every competitive exam that matters.</p>
+    <ul class="features-list">
+      <li>One-on-One Tutoring</li>
+      <li>Group Sessions</li>
+      <li>Exam Preparation</li>
+      <li>Advanced Learning</li>
+      <li>Selection Guaranteed</li>
+    </ul>
+    <div class="hero-btns">
+      <a href="tel:9419106528" class="btn-lime">📞 Call to Enrol</a>
+      <a href="quiz.html" class="btn-ghost">📝 Try Our Quiz</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="batch-card">
+      <span class="batch-tag">🎯 Fresh Batches Starting</span>
+      <h2>SSC & JKP Batch</h2>
+      <p class="batch-date">📅 From 26th January 2026</p>
+      <div class="batch-exams">
+        <span class="exam-chip">JKSSB</span>
+        <span class="exam-chip">SSC</span>
+        <span class="exam-chip">Agniveer</span>
+        <span class="exam-chip">Sainik School</span>
+        <span class="exam-chip">CDS</span>
+        <span class="exam-chip">NDA</span>
+      </div>
+      <a href="tel:9419106528" class="enroll-btn">ENROLL NOW →</a>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item">✦ Expert Faculty</div>
+  <div class="trust-item">✦ Small Batch Sizes</div>
+  <div class="trust-item">✦ Selection Guaranteed</div>
+  <div class="trust-item">✦ One-on-One Mentoring</div>
+  <div class="trust-item">✦ Proven Track Record</div>
+</div>
+
+<!-- COURSES -->
+<section class="courses-bg" id="courses">
+  <span class="section-label">What We Prepare For</span>
+  <h2 class="section-title">Competitive Exams</h2>
+  <p class="section-sub">Comprehensive preparation for all major government and defence competitive examinations.</p>
+  <div class="courses-grid">
+    <div class="course-card">
+      <span class="course-icon">🏛️</span>
+      <h3>JKSSB</h3>
+      <p>J&K Services Selection Board — complete prep for all posts.</p>
+    </div>
+    <div class="course-card">
+      <span class="course-icon">📋</span>
+      <h3>SSC</h3>
+      <p>Staff Selection Commission exams — CGL, CHSL, MTS and more.</p>
+    </div>
+    <div class="course-card">
+      <span class="course-icon">🪖</span>
+      <h3>Agniveer</h3>
+      <p>Complete Agnipath scheme preparation — written & physical.</p>
+    </div>
+    <div class="course-card">
+      <span class="course-icon">🏫</span>
+      <h3>Sainik School</h3>
+      <p>Entrance exam coaching for Sainik Schools across India.</p>
+    </div>
+    <div class="course-card">
+      <span class="course-icon">⚔️</span>
+      <h3>CDS</h3>
+      <p>Combined Defence Services — Math, English & GK focus.</p>
+    </div>
+    <div class="course-card">
+      <span class="course-icon">🎖️</span>
+      <h3>NDA</h3>
+      <p>National Defence Academy entrance — complete subject coverage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERINGS -->
+<section id="offerings">
+  <span class="section-label">How We Teach</span>
+  <h2 class="section-title">Our Teaching Model</h2>
+  <p class="section-sub">We are a group of experts ready to guide you through every subject with personalised attention.</p>
+  <div class="offerings-grid">
+    <ul class="offer-list">
+      <li>
+        <span class="o-icon">👤</span>
+        <div><strong>One-on-One Tutoring</strong><span>Personalised sessions focused entirely on your strengths and weak areas.</span></div>
+      </li>
+      <li>
+        <span class="o-icon">👥</span>
+        <div><strong>Group Sessions</strong><span>Collaborative learning in small, focused batches for peer growth.</span></div>
+      </li>
+      <li>
+        <span class="o-icon">📚</span>
+        <div><strong>Exam Preparation</strong><span>Previous year papers, mock tests, and topic-wise practice sets.</span></div>
+      </li>
+      <li>
+        <span class="o-icon">🚀</span>
+        <div><strong>Advanced Learning</strong><span>Beyond basics — deep dives into high-weightage topics for toppers.</span></div>
+      </li>
+      <li>
+        <span class="o-icon">🏆</span>
+        <div><strong>Selection Guaranteed</strong><span>Our structured programme is built to get you selected. Results speak.</span></div>
+      </li>
+    </ul>
+    <div class="guarantee-card">
+      <div class="big">100%</div>
+      <div class="glabel">Selection Focus</div>
+      <p>Every batch is designed with one goal — your selection. Our expert faculty tracks your progress and adapts teaching to your pace and needs.</p>
+      <br/>
+      <a href="tel:9419106528" class="btn-lime" style="display:inline-block;">📞 Enquire Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ CTA -->
+<section class="quiz-cta">
+  <h2>🧠 Test Your Knowledge!</h2>
+  <p>Try our free practice quiz — covers GK, Reasoning, and Math — perfect for SSC, JKSSB & NDA prep.</p>
+  <a href="quiz.html" class="btn-lime">Take the Free Quiz →</a>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:rgba(0,0,0,0.15)">
+  <span class="section-label">Find Us</span>
+  <h2 class="section-title">Contact Us</h2>
+  <p class="section-sub">Walk in, call us, or drop a WhatsApp — we're here to answer all your queries.</p>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <span class="cc-icon">📍</span>
+          <div>
+            <div class="cc-label">Address</div>
+            <div class="cc-val">11/03 Bishnah, Jammu, J&K, India</div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="cc-icon">📞</span>
+          <div>
+            <div class="cc-label">Phone / WhatsApp</div>
+            <div class="cc-val"><a href="tel:9419106528">+91 9419106528</a></div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="cc-icon">📧</span>
+          <div>
+            <div class="cc-label">Email</div>
+            <div class="cc-val"><a href="mailto:surjeetverma21@gmail.com">surjeetverma21@gmail.com</a></div>
+          </div>
+        </div>
+        <div class="contact-card">
+          <span class="cc-icon">🕐</span>
+          <div>
+            <div class="cc-label">Timings</div>
+            <div class="cc-val">Open All Days — Flexible Batches</div>
+          </div>
+        </div>
+      </div>
+      <div class="social-row">
+        <a href="https://www.instagram.com/godavari_classes" target="_blank" class="social-btn">📸 @godavari_classes</a>
+        <a href="https://wa.me/919419106528" target="_blank" class="social-btn">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3370!2d74.852!3d32.680!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBishnah%2C+Jammu%2C+Jammu+and+Kashmir!5e0!3m2!1sen!2sin!4v1700000000000"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Godavari Classes Location - Bishnah, Jammu">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Godavari Classes</strong> · 11/03 Bishnah, Jammu · <strong>+91 9419106528</strong></p>
+  <p style="margin-top:0.3rem;opacity:0.6">Coaching for JKSSB · SSC · Agniveer · Sainik School · CDS · NDA</p>
+</footer>
+
+<!-- WA FLOAT -->
+<a class="wa-float" href="https://wa.me/919419106528" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+</body>
+</html>
